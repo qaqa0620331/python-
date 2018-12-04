@@ -1127,5 +1127,426 @@ turtle.done()
 ```
 
 
-
 # CH06　函式
+```
+6.1 TestMax.py
+# Return the max between two numbers 
+def max(num1, num2): 
+    if num1 > num2:
+        result = num1
+    else:
+        result = num2
+
+    return result
+
+def main():
+    i = 5
+    j = 2
+    k = max(i, j) # Call the max function
+    print("The maximum between", i, "and", j, "is", k)
+
+main() # Call the main function
+
+```
+
+```
+6.2 PrintGradeFunction.py
+# Print grade for the score 
+def printGrade(score):
+    if score >= 90.0:
+        print('A')
+    elif score >= 80.0:
+        print('B')
+    elif score >= 70.0:
+        print('C')
+    elif score >= 60.0:
+        print('D')
+    else:
+        print('F')
+
+def main():
+    score = eval(input("Enter a score: "))
+    print("The grade is ", end = "")
+    printGrade(score)
+
+main() # Call the main function
+
+```
+
+```
+6.3 ReturnGradeFunction.py
+# Return the grade for the score 
+def getGrade(score):
+    if score >= 90.0:
+        return 'A'
+    elif score >= 80.0:
+        return 'B'
+    elif score >= 70.0:
+        return 'C'
+    elif score >= 60.0:
+        return 'D'
+    else:
+        return 'F'
+
+def main():
+    score = eval(input("Enter a score: "))
+    print("The grade is", getGrade(score))
+
+main() # Call the main function
+
+```
+
+```
+6.4 ReturnGradeFunction.py
+def main():
+    x = 1
+    print("Before the call,x is",x)
+    increment(x)
+    print("After the call,x is",x)
+def increment(n):
+    n += 1
+    print("\tn inside the funtion is",n")
+main()
+```
+
+```
+6.5 GCDFunction.py
+# Return the gcd of two integers 
+def gcd(n1, n2):
+    gcd = 1 # Initial gcd is 1
+    k = 2   # Possible gcd
+
+    while k <= n1 and k <= n2:
+        if n1 % k == 0 and n2 % k == 0:
+            gcd = k # Update gcd
+        k += 1
+
+    return gcd # Return gcd
+
+```
+
+```
+6.6 TestGCDFunction.py
+from GCDFunction import gcd # Import the module
+
+# Prompt the user to enter two integers
+n1 = eval(input("Enter the first integer: "))
+n2 = eval(input("Enter the second integer: "))
+
+print("The greatest common divisor for", n1,
+    "and", n2, "is", gcd(n1, n2))
+
+```
+
+```
+6.7 PrimeNumberFunction.py
+# Check whether number is prime 
+def isPrime(number):
+    divisor = 2
+    while divisor <= number / 2:
+        if number % divisor == 0:
+            # If true, number is not prime
+            return False # number is not a prime
+        divisor += 1
+
+    return True # number is prime
+
+def printPrimeNumbers(numberOfPrimes):
+    NUMBER_OF_PRIMES = 50 # Number of primes to display
+    NUMBER_OF_PRIMES_PER_LINE = 10 # Display 10 per line
+    count = 0 # Count the number of prime numbers
+    number = 2 # A number to be tested for primeness
+
+    # Repeatedly find prime numbers
+    while count < numberOfPrimes:
+        # Print the prime number and increase the count
+        if isPrime(number):
+            count += 1 # Increase the count
+
+            print(number, end = " ")
+            if count % NUMBER_OF_PRIMES_PER_LINE == 0:
+                # Print the number and advance to the new line
+                print()
+
+        # Check if the next number is prime
+        number += 1
+
+def main():
+    print("The first 50 prime numbers are")
+    printPrimeNumbers(50)
+
+main() # Call the main function
+
+```
+
+```
+6.8 Decimal2HexConversion.py
+# Convert a decimal to a hex as a string 
+def decimalToHex(decimalValue):
+    hex = ""
+ 
+    while decimalValue != 0:
+        hexValue = decimalValue % 16 
+        hex = toHexChar(hexValue) + hex
+        decimalValue = decimalValue // 16
+    
+    return hex
+  
+# Convert an integer to a single hex digit in a character 
+def toHexChar(hexValue):
+    if 0 <= hexValue <= 9:
+        return chr(hexValue + ord('0'))
+    else:  # 10 <= hexValue <= 15
+        return chr(hexValue - 10 + ord('A'))
+
+def main():
+    # Prompt the user to enter a decimal integer
+    decimalValue = eval(input("Enter a decimal number: "))
+
+    print("The hex number for decimal", 
+        decimalValue, "is", decimalToHex(decimalValue))
+  
+main() # Call the main function
+
+```
+
+```
+6.9 DefaultArgumentDemo.py
+def printArea(width = 1, height = 2):
+    area = width * height
+    print("width:", width, "\theight:", height, "\tarea:", area)
+
+printArea() # Default arguments width = 1 and height = 2
+printArea(4, 2.5) # Positional arguments width = 4 and height = 2.5
+printArea(height = 5, width = 3) # Keyword arguments width 
+printArea(width = 1.2) # Default height = 2
+printArea(height = 6.2) # Default widht = 1
+
+```
+
+```
+6.10 MultipleReturnValueDemo.py
+def sort(number1, number2):
+    if number1 < number2:
+        return number1, number2
+    else:
+        return number2, number1
+
+n1, n2 = sort(3, 2)
+print("n1 is", n1)
+print("n2 is", n2)
+
+```
+
+
+```
+6.11 RandomCharacter.py
+from random import randint # import randint
+
+# Generate a random character between ch1 and ch2
+def getRandomCharacter(ch1, ch2):
+    return chr(randint(ord(ch1), ord(ch2)))
+
+# Generate a random lowercase letter
+def getRandomLowerCaseLetter():
+    return getRandomCharacter('a', 'z')
+
+# Generate a random uppercase letter
+def getRandomUpperCaseLetter():
+    return getRandomCharacter('A', 'Z')
+
+# Generate a random digit character
+def getRandomDigitCharacter():
+    return getRandomCharacter('0', '9')
+
+# Generate a random character
+def getRandomASCIICharacter():
+    return getRandomCharacter(chr(0), chr(127))
+
+```
+
+```
+6.12 TestRandomCharacter.py
+import RandomCharacter
+
+NUMBER_OF_CHARS = 175 # Number of characters to generate
+CHARS_PER_LINE = 25 # Number of characters to display per line
+
+# Print random characters between 'a' and 'z', 25 chars per line
+for i in range(NUMBER_OF_CHARS):
+    print(RandomCharacter.getRandomLowerCaseLetter(), end = "")
+    if (i + 1) % CHARS_PER_LINE == 0:
+        print()  # Jump to the new line
+
+```
+
+```
+6.13 PrintCalendar.py
+# Print the calendar for a month in a year 
+def printMonth(year, month): 
+    # Print the headings of the calendar
+    printMonthTitle(year, month)
+
+    # Print the body of the calendar
+    printMonthBody(year, month)
+  
+# Print the month title, e.g., May, 1999
+def printMonthTitle(year, month): 
+    print("         ", getMonthName(month), " ", year)
+    print("-----------------------------")
+    print(" Sun Mon Tue Wed Thu Fri Sat")
+
+# Print month body 
+def printMonthBody(year, month): 
+    # Get start day of the week for the first date in the month
+    startDay = getStartDay(year, month)
+
+    # Get number of days in the month
+    numberOfDaysInMonth = getNumberOfDaysInMonth(year, month)
+
+    # Pad space before the first day of the month
+    i = 0
+    for i in range(startDay):
+       print("    ", end = "")
+
+    for i in range(1, numberOfDaysInMonth + 1):
+        print(format(i, '4d'), end = "")
+
+        if (i + startDay) % 7 == 0:
+            print() # Jump to the new line
+
+# Get the English name for the month
+def getMonthName(month): 
+    if month == 1:
+        monthName = "January"
+    elif month == 2:
+        monthName = "February"
+    elif month == 3:
+        monthName = "March"
+    elif month == 4:
+        monthName = "April"
+    elif month == 5:
+        monthName = "May"
+    elif month == 6:
+        monthName = "June"
+    elif month == 7:
+        monthName = "July"
+    elif month == 8: 
+        monthName = "August"
+    elif month == 9:
+        monthName = "September"
+    elif month == 10:
+        monthName = "October"
+    elif month == 11:
+        monthName = "November"
+    else:
+        monthName = "December"
+
+    return monthName
+
+# Get the start day of month/1/year 
+def getStartDay(year, month): 
+    START_DAY_FOR_JAN_1_1800 = 3
+
+    # Get total number of days from 1/1/1800 to month/1/year
+    totalNumberOfDays = getTotalNumberOfDays(year, month)
+
+    # Return the start day for month/1/year
+    return (totalNumberOfDays + START_DAY_FOR_JAN_1_1800) % 7
+
+# Get the total number of days since January 1, 1800
+def getTotalNumberOfDays(year, month): 
+    total = 0
+
+    # Get the total days from 1800 to 1/1/year
+    for i in range(1800, year):
+        if isLeapYear(i):
+            total = total + 366
+        else:
+            total = total + 365
+
+    # Add days from Jan to the month prior to the calendar month
+    for i in range(1, month):
+        total = total + getNumberOfDaysInMonth(year, i)
+
+    return total
+
+# Get the number of days in a month
+def getNumberOfDaysInMonth(year, month): 
+    if (month == 1 or month == 3 or month == 5 or month == 7 or
+        month == 8 or month == 10 or month == 12):
+        return 31
+
+    if month == 4 or month == 6 or month == 9 or month == 11:
+        return 30
+
+    if month == 2:
+        return 29 if isLeapYear(year) else 28
+
+    return 0 # If month is incorrect
+
+# Determine if it is a leap year
+def isLeapYear(year): 
+    return year % 400 == 0 or (year % 4 == 0 and year % 100 != 0)
+
+def main():
+    # Prompt the user to enter year and month 
+    year = eval(input("Enter full year (e.g., 2001): "))
+    month = eval(input(("Enter month as number between 1 and 12: ")))
+
+    # Print calendar for the month of the year
+    printMonth(year, month)
+ 
+main() # Call the main function
+
+```
+
+```
+6.14 UsefulTurtleFunctions.py
+import turtle
+
+# Draw a line from (x1, y1) to (x2, y2)
+def drawLine(x1, y1, x2, y2):
+    turtle.penup()
+    turtle.goto(x1, y1)
+    turtle.pendown()
+    turtle.goto(x2, y2)
+
+# Write a text at the specified location (x, y)
+def writeText(s, x, y): 
+    turtle.penup() # Pull the pen up
+    turtle.goto(x, y)
+    turtle.pendown() # Pull the pen down
+    turtle.write(s) # Write a string
+
+# Draw a point at the specified location (x, y)
+def drawPoint(x, y): 
+    turtle.penup() # Pull the pen up
+    turtle.goto(x, y)
+    turtle.pendown() # Pull the pen down
+    turtle.begin_fill() # Begin to fill color in a shape
+    turtle.circle(3) 
+    turtle.end_fill() # Fill the shape
+
+# Draw a circle at centered at (x, y) with the specified radius
+def drawCircle(x, y, radius): 
+    turtle.penup() # Pull the pen up
+    turtle.goto(x, y - radius)
+    turtle.pendown() # Pull the pen down
+    turtle.circle(radius) 
+    
+# Draw a rectangle at (x, y) with the specified width and height
+def drawRectangle(x, y, width, height): 
+    turtle.penup() # Pull the pen up
+    turtle.goto(x + width / 2, y + height / 2)
+    turtle.pendown() # Pull the pen down
+    turtle.right(90)
+    turtle.forward(height)
+    turtle.right(90)
+    turtle.forward(width)
+    turtle.right(90)
+    turtle.forward(height)
+    turtle.right(90)
+    turtle.forward(width)
+
+```
