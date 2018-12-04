@@ -785,23 +785,347 @@ turtle.done()
 # CH05　迴圈
 
 ```
+5.1 RepeatSubtractionQuiz.py
+import random
+
+# 1. Generate two random single-digit integers
+number1 = random.randint(0, 9)
+number2 = random.randint(0, 9)
+
+# 2. If number1 < number2, swap number1 with number2
+if number1 < number2:
+    number1, number2 = number2, number1
+
+# 3. Prompt the student to answer What is number1 - number2?
+answer = eval(input("What is " + str(number1) + " - " 
+    + str(number2) + "? "))
+
+# 5. Repeatedly ask the user the question until it is correct
+while number1 - number2 != answer:
+    answer = eval(input("Wrong answer. Try again. What is " 
+        + str(number1) + " - " + str(number2) + "? "))
+  
+print("You got it!")
 
 ```
 
 ```
+5.2 GuessNumberOneTime.py
+import random
+
+# Generate a random number to be guessed
+number = random.randint(1, 100)
+
+print("Guess a magic number between 0 and 100")
+
+# Prompt the user to guess the number
+guess = eval(input("Enter your guess: "))
+
+if guess == number:
+    print("Yes, the number is " + str(number))
+elif guess > number:
+    print("Your guess is too high")
+else:
+    print("Your guess is too low")
 
 ```
 
 ```
+5.3 GuessNumber.py
+import random
+
+# Generate a random number to be guessed
+number = random.randint(1, 100)
+
+print("Guess a magic number between 0 and 100")
+
+guess = -1
+while guess != number:
+    # Prompt the user to guess the number
+    guess = eval(input("Enter your guess: "))
+
+    if guess == number:
+        print("Yes, the number is", number)
+    elif guess > number:
+        print("Your guess is too high")
+    else:
+        print("Your guess is too low")
 
 ```
 
 ```
+5.4 SubtractionQuizLoop.py
+import random
+import time
+
+correctCount = 0 # Count the number of correct answers
+count = 0 # Count the number of questions
+NUMBER_OF_QUESTIONS = 5 # Constant
+
+startTime = time.time() # Get start time
+
+while count < NUMBER_OF_QUESTIONS:
+    # 1. Generate two random single-digit integers
+    number1 = random.randint(0, 9)
+    number2 = random.randint(0, 9)
+
+    # 2. If number1 < number2, swap number1 with number2
+    if number1 < number2:
+        number1, number2 = number2, number1
+
+    # 3. Prompt the student to answer "what is number1 - number2?" 
+    answer = eval(input("What is " + str(number1) + " - " + 
+        str(number2) + "? "))
+
+    # 5. Grade the answer and display the result
+    if number1 - number2 == answer:
+        print("You are correct!")
+        correctCount += 1
+    else:
+        print("Your answer is wrong.\n", number1, "-",
+            number2, "should be", (number1 - number2))
+
+    # Increase the count
+    count += 1
+
+endTime = time.time() # Get end time
+testTime = int(endTime - startTime) # Get test time
+print("Correct count is", correctCount, "out of", 
+    NUMBER_OF_QUESTIONS, "\nTest time is", testTime, "seconds")
 
 ```
 
 ```
+5.5 SentinelValue.py
+data = eval(input("Enter an integer (the input exits " + 
+    "if the input is 0): "))
+
+# Keep reading data until the input is 0
+sum = 0
+while data != 0:
+    sum += data
+
+    data = eval(input("Enter an integer (the input exits " +
+        "if the input is 0): "))
+
+print("The sum is", sum)
 
 ```
+
+```
+5.6 MultiplicationTable.py
+print("          Multiplication Table")
+# Display the number title
+print("  |", end = '')
+for j in range(1, 10):
+    print("  ", j, end = '')
+print() # Jump to the new line
+print("-----------------------------------------")
+
+# Display table body
+for i in range(1, 10):
+    print(i, "|", end = '')
+    for j in range(1, 10): 
+        # Display the product and align properly
+        print(format(i * j, '4d'), end = '')
+    print()# Jump to the new line
+
+```
+
+```
+5.7 TestSum.py
+# Initialize sum
+sum = 0
+
+# Add 0.01, 0.02, ..., 0.99, 1 to sum
+i = 0.01
+while i <= 1.0:
+    sum += i
+    i = i + 0.01
+
+# Display result
+print("The sum is", sum)
+```
+
+```
+5.8 GreatestCommonDivisor.py
+#Prompt the user to enter two integers
+n1 = eval(input("Enter first integer: "))
+n2 = eval(input("Enter second integer: "))
+
+gcd = 1
+k = 2
+while k <= n1 and k <= n2:
+    if n1 % k == 0 and n2 % k == 0:
+        gcd = k
+    k += 1
+
+print("The greatest common divisor for", 
+    n1, "and", n2, "is", gcd)
+```
+
+```
+5.9 FutureTuition.py
+year = 0 # Year 0
+tuition = 10000   # Year 1
+
+while tuition < 20000:
+    year += 1
+    tuition = tuition * 1.07
+
+print("Tuition will be doubled in", year, "years")
+print("Tuition will be $" + format(tuition, ".2f"), 
+      "in", year, "years")
+
+```
+
+```
+5.10 MonteCarloSimulation.py
+import random
+
+NUMBER_OF_TRIALS = 100000 # Constant
+numberOfHits = 0
+
+for i in range(NUMBER_OF_TRIALS):
+    x = random.random() * 2 - 1
+    y = random.random() * 2 - 1
+
+    if x * x + y * y <= 1:
+        numberOfHits += 1
+
+pi = 4 * numberOfHits / NUMBER_OF_TRIALS
+
+print("PI is", pi)
+
+```
+
+```
+5.11 TestBreak.py
+sum = 0
+number = 0
+
+while number < 20:
+    number += 1
+    sum += number
+    if sum >= 100: 
+        break
+
+print("The number is", number)
+print("The sum is", sum)
+```
+
+```
+5.12 TestContinue.py
+sum = 0
+number = 0
+
+while number < 20: 
+    number += 1
+    if number == 10 or number == 11: 
+        continue
+    sum += number
+
+print("The sum is", sum)
+
+```
+
+```
+5.13 PrimeNumbers.py
+from math import sqrt
+
+def main():
+    n = eval(input("Find all prime numbers <= n, enter n: "))
+    NUMBER_PER_LINE = 10  # Display 10 per line
+    count = 0  # Count the number of prime numbers
+    number = 2  # A number to be tested for primeness
+
+    print("The prime numbers are:")
+
+    # Repeatedly find prime numbers
+    while number <= n:
+        # Assume the number is prime
+        isPrime = True  # Is the current number prime?
+
+        # Test if number is prime
+        for divisor in range(2, int(sqrt(number)) + 1): 
+            # If true, number is not prime
+            if number % divisor == 0:
+                isPrime = False  # Set isPrime to false          
+                break  # Exit the for loop
+
+        # Print the prime number and increase the count
+        if isPrime:
+            count += 1  # Increase the count
+
+            if count % NUMBER_PER_LINE == 0:
+                # Print the number and advance to the new line
+                print(" " + str(number))
+            else:
+                print(" " + str(number), end = "")
+
+        # Check if the next number is prime
+        number += 1
+    
+    print("\n" + str(count) + " prime(s) less than or equal to " 
+        + str(n))
+
+main()
+```
+
+```
+5.14 RandomWalk.py
+import turtle
+from random import randint
+
+turtle.speed(1) # Set turtle speed to slowest
+
+# Draw 16 by 16 lattices
+turtle.color("gray") # Color for lattice
+x = -80 
+for y in range(-80, 80 + 1, 10):
+    turtle.penup()
+    turtle.goto(x, y) # Draw a horizontal line
+    turtle.pendown()
+    turtle.forward(160)
+
+y = 80
+turtle.right(90)
+for x in range(-80, 80 + 1, 10):
+    turtle.penup()
+    turtle.goto(x, y) # Draw a vertical line
+    turtle.pendown()
+    turtle.forward(160)
+    
+turtle.pensize(3)
+turtle.color("red")
+
+turtle.penup()
+turtle.goto(0, 0) # Go to the center
+turtle.pendown()
+
+x = y = 0 # Current pen location at the center of lattice
+while abs(x) < 80 and abs(y) < 80:    
+    r = randint(0, 3)
+    if r == 0:
+        x += 10  # Walk east
+        turtle.setheading(0)
+        turtle.forward(10)      
+    elif r == 1:
+        y -= 10 # Walk south
+        turtle.setheading(270)
+        turtle.forward(10)      
+    elif r == 2:
+        x -= 10 # Walk west
+        turtle.setheading(180)
+        turtle.forward(10)      
+    elif r == 3:
+        y += 10 # Walk north
+        turtle.setheading(90)
+        turtle.forward(10)      
+
+turtle.done() 
+```
+
+
 
 # CH06　函式
