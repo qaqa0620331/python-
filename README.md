@@ -448,23 +448,338 @@ turtle.done()
 # CH04　選擇
 
 ```
+4.1 AdditionQuiz.py
+import random 
+
+# Generate random numbers
+number1 = random.randint(0, 9)
+number2 = random.randint(0, 9)
+
+# Prompt the user to enter an answer
+answer = eval(input("What is " + str(number1) + " + " 
+    + str(number2) + "? "))
+    
+# Display result    
+print(number1, "+", number2, "=", answer, 
+    "is", number1 + number2 == answer)
+```
+
+```
+4.2 SimpleIfDemo.py
+number = eval(input("Enter an integer: "))
+
+if number % 5 == 0 :
+   print("HiFive");
+
+if number % 2 == 0 :
+   print("HiEven");
+```
+
+```
+4.3 GuessBirthday.py
+day = 0 # birth day to be determined
+  
+# Prompt the user to answer the first question
+question1 = "Is your birthday in Set1?\n" + \
+    " 1  3  5  7\n" + \
+    " 9 11 13 15\n" + \
+    "17 19 21 23\n" + \
+    "25 27 29 31" + \
+    "\nEnter 0 for No and 1 for Yes: " 
+answer = eval(input(question1))
+  
+if answer == 1:
+   day += 1
+ 
+# Prompt the user to answer the second question
+question2 = "Is your birthday in Set2?\n" + \
+    " 2  3  6  7\n" + \
+    "10 11 14 15\n" + \
+    "18 19 22 23\n" + \
+    "26 27 30 31" + \
+    "\nEnter 0 for No and 1 for Yes: " 
+answer = eval(input(question2))
+  
+if answer == 1:
+   day += 2
+ 
+# Prompt the user to answer the third question
+question3 = "Is your birthday in Set3?\n" + \
+    " 4  5  6  7\n" + \
+    "12 13 14 15\n" + \
+    "20 21 22 23\n" + \
+    "28 29 30 31" + \
+    "\nEnter 0 for No and 1 for Yes: " 
+answer = eval(input(question3))
+  
+if answer == 1:
+   day += 4
+  
+# Prompt the user to answer the fourth question
+question4 = "Is your birthday in Set4?\n" + \
+    " 8  9 10 11\n" + \
+    "12 13 14 15\n" + \
+    "24 25 26 27\n" + \
+    "28 29 30 31" + \
+    "\nEnter 0 for No and 1 for Yes: " 
+answer = eval(input(question4))
+  
+if answer == 1:
+    day += 8
+  
+# Prompt the user to answer the fifth question
+question5 = "Is your birthday in Set5?\n" + \
+    "16 17 18 19\n" + \
+    "20 21 22 23\n" + \
+    "24 25 26 27\n" + \
+    "28 29 30 31" + \
+    "\nEnter 0 for No and 1 for Yes: " 
+answer = eval(input(question5))
+  
+if answer == 1:
+    day += 16
+
+print("\nYour birthday is" + str(day) + "!")
 
 ```
 
 ```
+4.4 SubtractionQuiz.py
+import random
+
+# 1. Generate two random single-digit integers
+number1 = random.randint(0, 9)
+number2 = random.randint(0, 9)
+
+# 2. If number1 < number2, swap number1 with number2
+if number1 < number2:
+    number1, number2 = number2, number1 # Simultaneous assignment
+
+# 4. Prompt the student to answer "what is number1 - number2?"
+answer = eval(input("What is " + str(number1) + " - " + 
+    str(number2) + "? "))
+
+# 4. Grade the answer and display the result
+if number1 - number2 == answer:
+    print("You are correct!")
+else:
+    print("Your answer is wrong.\n", number1, "-",
+        number2, "is", number1 - number2)
+```
+
+```
+4.5 ChineseZodiac.py
+year = eval(input("Enter a year: "))
+zodiacYear = year % 12 
+if zodiacYear == 0:
+    print("monkey")
+elif zodiacYear == 1:
+    print("rooster")
+elif zodiacYear == 2:
+    print("dog")
+elif zodiacYear == 3:
+    print("pig")
+elif zodiacYear == 4: 
+    print("rat")
+elif zodiacYear == 5: 
+    print("ox")
+elif zodiacYear == 6:
+    print("tiger")
+elif zodiacYear == 7:
+    print("rabbit")
+elif zodiacYear == 8:
+    print("dragon")
+elif zodiacYear == 9:
+    print("snake")
+elif zodiacYear == 10:
+    print("horse")
+else: 
+    print("sheep")
 
 ```
 
 ```
+4.6 ComputeBMI.py
+# Prompt the user to enter weight in pounds
+weight = eval(input("Enter weight in pounds: "))
+    
+# Prompt the user to enter height in inches
+height = eval(input("Enter height in inches: "))
+    
+KILOGRAMS_PER_POUND = 0.45359237 # Constant
+METERS_PER_INCH = 0.0254 # Constant 
+    
+# Compute BMI
+weightInKilograms = weight * KILOGRAMS_PER_POUND 
+heightInMeters = height * METERS_PER_INCH
+bmi = weightInKilograms / (heightInMeters * heightInMeters)
+
+# Display result
+print("BMI is", format(bmi, ".2f"))
+if bmi < 18.5:
+    print("Underweight")
+elif bmi < 25:
+    print("Normal")
+elif bmi < 30:
+    print("Overweight")
+else:
+    print("Obese")
+```
+
+```
+4.7 ComputeTax.py
+import sys
+
+# Prompt the user to enter filing status
+status = eval(input(
+    "(0-single filer, 1-married jointly,\n" +
+    "2-married separately, 3-head of household)\n" +
+    "Enter the filing status: "))
+
+# Prompt the user to enter taxable income
+income = eval(input("Enter the taxable income: "))
+
+# Compute tax
+tax = 0
+
+if status == 0:  # Compute tax for single filers
+    if income <= 8350:
+        tax = income * 0.10
+    elif income <= 33950:
+        tax = 8350 * 0.10 + (income - 8350) * 0.15
+    elif income <= 82250:
+        tax = 8350 * 0.10 + (33950 - 8350) * 0.15 + \
+            (income - 33950) * 0.25
+    elif income <= 171550:
+        tax = 8350 * 0.10 + (33950 - 8350) * 0.15 + \
+            (82250 - 33950) * 0.25 + (income - 82250) * 0.28
+    elif income <= 372950:
+        tax = 8350 * 0.10 + (33950 - 8350) * 0.15 + \
+            (82250 - 33950) * 0.25 + (171550 - 82250) * 0.28 + \
+            (income - 171550) * 0.33
+    else:
+        tax = 8350 * 0.10 + (33950 - 8350) * 0.15 + \
+              (82250 - 33950) * 0.25 + (171550 - 82250) * 0.28 + \
+              (372950 - 171550) * 0.33 + (income - 372950) * 0.35;
+elif status == 1: # Compute tax for married file jointly
+    print("Left as exercise")
+elif status == 2: # Compute tax for married separately
+    print("Left as exercise")
+elif status == 3: # Compute tax for head of household
+    print("Left as exercise")
+else:
+    print("Error: invalid status")
+    sys.exit()
+
+# Display the result
+print("Tax is", format(tax, ".2f"))
 
 ```
 
 ```
+4.8 TestBooleanOperators.py
+# Receive an input
+number = eval(input("Enter an integer: "))
+
+if number % 2 == 0 and number % 3 == 0:
+    print(number, "is divisible by 2 and 3")
+
+if number % 2 == 0 or number % 3 == 0:
+    print(number, "is divisible by 2 or 3")
+
+if (number % 2 == 0 or number % 3 == 0) and \
+       not (number % 2 == 0 and number % 3 == 0):
+    print(number, "divisible by 2 or 3, but not both")
+
 
 ```
 
 ```
+4.9 LeapYear.py
+year = eval(input("Enter a year: "))
 
+# Check if the year is a leap year 
+isLeapYear = (year % 4 == 0 and year % 100 != 0) or \
+   (year % 400 == 0)
+
+# Display the result 
+print(year, "is a leap year?", isLeapYear)
+
+```
+
+```
+4.10 Lottery.py
+import random
+
+# Generate a lottery
+lottery = random.randint(0, 99)
+
+# Prompt the user to enter a guess
+guess = eval(input("Enter your lottery pick (two digits): "))
+
+# Get digits from lottery
+lotteryDigit1 = lottery // 10
+lotteryDigit2 = lottery % 10
+
+# Get digits from guess
+guessDigit1 = guess // 10
+guessDigit2 = guess % 10
+
+print("The lottery number is", lottery)
+
+# Check the guess
+if guess == lottery:
+    print("Exact match: you win $10,000")
+elif (guessDigit2 == lotteryDigit1 and \
+  guessDigit1 == lotteryDigit2):
+    print("Match all digits: you win $3,000")
+elif (guessDigit1 == lotteryDigit1 
+        or guessDigit1 == lotteryDigit2 
+        or guessDigit2 == lotteryDigit1 
+        or guessDigit2 == lotteryDigit2):
+    print("Match one digit: you win $1,000")
+else:
+    print("Sorry, no match")
+
+```
+
+```
+4.11 PointInCircle.py
+import turtle
+
+x1, y1 = eval(input("Enter the center of a circle x, y: "))
+radius = eval(input("Enter the radius of the circle: "))
+x2, y2 = eval(input("Enter a point x, y: "))
+
+# Draw the circle
+turtle.penup() # Pull the pen up
+turtle.goto(x1, y1 - radius)
+turtle.pendown() # Pull the pen down
+turtle.circle(radius)
+
+# Draw the point
+turtle.penup() # Pull the pen up
+turtle.goto(x2, y2)
+turtle.pendown() # Pull the pen down
+turtle.begin_fill() # Begin to fill color in a shape
+turtle.color("red")
+turtle.circle(3) 
+turtle.end_fill() # Fill the shape
+
+# Display the status
+turtle.penup() # Pull the pen up
+turtle.goto(x1 - 70, y1 - radius - 20)
+turtle.pendown() 
+
+d = ((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) ** 0.5
+if d <= radius:
+    turtle.write("The point is inside the circle") 
+else:
+    turtle.write("The point is outside the circle") 
+
+turtle.hideturtle()
+
+turtle.done() 
 ```
 
 # CH05　迴圈
